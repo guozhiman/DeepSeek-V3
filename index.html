@@ -1,0 +1,20 @@
+<script>
+  async function callFreeAPI() {
+    const apiUrl = "https://your-api.vercel.app/v1/chat/completions"; 
+    const userToken = "sk-40073cc5d1d34e028f5a6c4c1e5f2bf4";  // 替换为 DeepSeek 官网获取的 userToken 
+ 
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userToken}`
+      },
+      body: JSON.stringify({ 
+        model: "deepseek-chat",
+        messages: [{ role: "user", content: "你好" }]
+      })
+    });
+    const data = await response.json(); 
+    console.log(data.choices[0].message.content); 
+  }
+</script>
